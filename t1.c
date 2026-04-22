@@ -20,7 +20,7 @@ struct Dato * reservarmemoria(){
     ptrtemp=(struct Dato*)malloc(sizeof(struct Dato));
     if(ptrtemp==NULL){
         return NULL;
-    }elsE{
+    }else{
         
     }
 }
