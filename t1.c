@@ -6,26 +6,22 @@ struct Dato{
     struct Dato *Ptrsig;
 };
 
-int Menu(){
-    int op;
-    printf("[1]....Crear dato\n");
-    printf("[2]....Mostrar datos\n");
-    printf("[3]....Liberar\n");
-    printf("[4]....Salir\n");
-    scanf("%d",&op);
-    return op;
-}
-
+int Menu();
+int menu2();
 void crearDato(struct Dato **ptr);
 void mostrarDato(struct Dato *ptr);
 void liberarDato(struct Dato **ptr);
 void Salir(struct Dato *ptr);
+void Contar(struct Dato *ptr);
+void BuscarDato(struct Dato *ptr);
+void Reemplazar(struct Dato *ptr);
 
 int main(void){
     int op;
+    int opcion;
     int cont = 0;
     struct Dato *ptr=NULL;
-
+    printf("Bienvenido a este programa\n");
     do{
         op=Menu();
         switch (op){
@@ -33,21 +29,53 @@ int main(void){
             crearDato(&ptr);
             break;
         case 2:
-            mostrarDato(ptr);
+        do{
+            opcion=menu2();
+            switch (opcion){
+            case 1:
+                BuscarDato(ptr);
+                break;
+            case 2:
+                Contar(ptr);
+                break;
+            case 3:
+                Reemplazar(ptr);
+                break;
+            case 4:
+                printf("\nRegresando... \n");
+                break;
+            default: printf("Esa opcion no existe\n");
+            }
+        }while(opcion!=4);
             break;
         case 3:
-            liberarDato(&ptr);
+            mostrarDato(ptr);
             break;
         case 4:
-            Salir(ptr);
+            liberarDato(&ptr);
             break;
-        default:
+        case 5:
+            Salir(ptr);
+            printf("\nsaliendo.....\n");
+            break;
+        default: printf("opcion invalida!!\n");
             break;
         }
-
-    }while (op!=4);
-
+    }while (op!=5);
     return 0;
+}
+
+int Menu(){
+    int op;
+    printf("\n---MENU---\n");
+    printf("[1]....Crear dato\n");
+    printf("[2]....Funciones\n");
+    printf("[3]....Mostrar datos\n");
+    printf("[4]....Liberar\n");
+    printf("[5]....Salir\n");
+    printf("Elija una opcion: \n");
+    scanf("%d",&op);
+    return op;
 }
 
 void crearDato(struct Dato **ptr){
@@ -56,7 +84,7 @@ void crearDato(struct Dato **ptr){
     if(nuevo==NULL){
         return;
     }
-    printf("Ingrese un numero");
+    printf("Ingrese un numero: \n");
     scanf("%d",&nuevo->d);
 
     nuevo->Ptrsig=NULL;
@@ -73,11 +101,11 @@ void crearDato(struct Dato **ptr){
 
 void mostrarDato(struct Dato *ptr){
     if(ptr == NULL){
-        printf("Lista vacia\n");
+        printf("Lista vacia \n");
         return;
     }
 
-    printf("Datos en la lista:\n");
+    printf("Datos en la lista: \n");
     while(ptr != NULL){
         printf("%d -> ", ptr->d);
         ptr = ptr->Ptrsig;
@@ -99,7 +127,6 @@ void liberarDato(struct Dato **ptr){
         return;
     }
     ptraux=*ptr;
-
     while (ptraux->Ptrsig !=NULL){
         anterior = ptraux;
         ptraux=ptraux->Ptrsig;
@@ -117,4 +144,76 @@ void Salir(struct Dato *ptr){
         free(ptraux);
     }
     printf("Lista liberada");
+}
+int menu2(){
+    int opcion;
+    printf("\n---SUBMENU---\n");
+    printf("[1]....Buscar\n");
+    printf("[2]....Contar\n");
+    printf("[3]....Reemplazar\n");//se debe pedir a quien se desea remplazar y en donde se va a remplazr
+    printf("[4]....Regresar\n");
+    printf("Elija una opcion: \n");
+    scanf("%d",&opcion);
+    return opcion;
+}
+void BuscarDato(struct Dato *ptr){
+    int b, e=0, p=1;
+    struct Dato *ptraux=ptr;
+
+    if(ptr==NULL){
+        printf("\nLa lista esta vacia");
+    }else{
+        printf("ingrese el dato que deasea buscar: ");
+        scanf("%d",&b);
+        while(ptraux!=NULL){
+            if(ptraux->d==b){
+                printf("el dato %d se encuentra en la posicion %d\n",b,p);
+                e=1;
+            }
+            ptraux=ptraux->Ptrsig;
+            p++;
+        }
+        if (!e){
+            printf("el valor no existe");
+        }
+    }
+}
+void Contar(struct Dato *ptr){
+    int cont=0;
+    struct Dato *ptraux=ptr;
+    while(ptraux!=NULL){
+        cont++;
+        ptraux=ptraux->Ptrsig;
+    }
+    printf("La cantidad de nodos es: %d\n",cont);
+}
+
+void Reemplazar(struct Dato *ptr){
+    int b, n, e=0;
+    struct Dato *ptraux = ptr;
+
+    if(ptr == NULL){
+        printf("\nLa lista esta vacia\n");
+        return;
+    }
+
+    printf("Ingrese el dato que desea reemplazar: ");
+    scanf("%d", &b);
+
+    printf("Ingrese el nuevo valor: ");
+    scanf("%d", &n);
+
+    while(ptraux != NULL){
+        if(ptraux->d == b){
+            ptraux->d = n;
+            e=1;
+        }
+        ptraux = ptraux->Ptrsig;
+    }
+
+    if(e){
+        printf("Dato reemplazado correctamente\n");
+    }else{
+        printf("El dato no se encontro\n");
+    }
 }
