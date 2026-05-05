@@ -150,7 +150,7 @@ int menu2(){
     printf("\n---SUBMENU---\n");
     printf("[1]....Buscar\n");
     printf("[2]....Contar\n");
-    printf("[3]....Reemplazar\n");//se debe pedir a quien se desea remplazar y en donde se va a remplazr
+    printf("[3]....Reemplazar\n");
     printf("[4]....Regresar\n");
     printf("Elija una opcion: \n");
     scanf("%d",&opcion);
