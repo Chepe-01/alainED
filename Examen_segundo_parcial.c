@@ -93,9 +93,9 @@ int main (void){
             }
             free(ptr);
             ptr = NULL;
-        }
-        printf("Lista liberada\n");
-        printf("Saliendo...\n");
+            }
+            printf("Lista liberada\n");
+            printf("Saliendo...\n");
             break;
         default: printf("opcion invalida!!\n");
             break;
