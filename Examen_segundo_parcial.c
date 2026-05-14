@@ -97,6 +97,8 @@ int main (void){
         printf("Lista liberada\n");
         printf("Saliendo...\n");
             break;
+        default: printf("opcion invalida!!\n");
+            break;
         }
     }while(op!=4);
 }
