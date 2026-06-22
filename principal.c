@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "menu.h"
+#ifndef STRUCTS_H
+#define STRUCTS_H
+
 struct Persona{
     char *nombre;
     int edad;
@@ -17,6 +17,13 @@ struct Alumno{
     char correo[23];
     float calif [5][5];
 };
+#endif
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "menu.h"
+#include "Altas.h"
 
 int main(){
     int op;
