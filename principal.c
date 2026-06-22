@@ -23,7 +23,7 @@ int main(){
     struct Persona *ptr;
 
     do{
-        op=munuPrincipal();                                           
+        op=menuPrincipal();                                           
         switch (op){
             case 1:
                 Altas(&ptr);
