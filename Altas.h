@@ -4,12 +4,28 @@
 
 int Altas(struct Persona **ptr);
 
-void nuevaPersona(struct Persona *ptr){
-    struct Persona *p= (struct Persona*)malloc(sizeof(struct Persona));
-      if(P==NULL)
+struct Persona *nuevaPersona(){
+    struct Persona *p =(struct Persona*)malloc(sizeof(struct Persona));
+    if(p==NULL)
         printf("no se reservo memoria");
-        
-        
+
+    else{
+        char nombre[50];
+        p->nombre=(char*)malloc(sizeof(strlen(nombre)+1));
+        printf("Nombre: ");
+        fgets(nombre,sizeof(50),stdin);
+
+        printf("Edad: ");
+        scanf("%d",&p->edad);
+
+        printf("Genero: ");
+        scanf(" %c",&p->genero);
+
+        printf("Fecha de nacimiento: ");
+        scanf("%s",p->fn);
+
+    }
+    return p;
 }
 
 int Altas(struct Persona **ptr){
