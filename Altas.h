@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <string.h>
 int Altas(struct Persona **ptr);
 
 struct Persona *nuevaPersona(){
@@ -12,16 +11,16 @@ struct Persona *nuevaPersona(){
     else{
         char nombre[50];
         p->nombre=(char*)malloc(sizeof(strlen(nombre)+1));
-        printf("Nombre: ");
+        printf("Nombre: \n");
         fgets(nombre,sizeof(50),stdin);
 
-        printf("Edad: ");
+        printf("Edad: \n");
         scanf("%d",&p->edad);
 
-        printf("Genero: ");
-        scanf(" %c",&p->genero);
+        printf("Genero: \n");
+        scanf(" %s",&p->genero);
 
-        printf("Fecha de nacimiento: ");
+        printf("Fecha de nacimiento: \n");
         scanf("%s",p->fn);
 
     }
@@ -29,13 +28,20 @@ struct Persona *nuevaPersona(){
 }
 struct Alumno *nuevoAlumno(){
     struct Alumno *A=(struct Alumno*)malloc(sizeof(struct Alumno));
-    if(A==NULL);
+    if(A==NULL)
         printf("no se reservo memoria");
     else{
+        printf("matricula: \n");
+        scanf("%s",& A->matricula);
+
+        printf("Carrera: \n");
+        scanf("%s",&A->carrera);
+
         
     }
 
 }
+
 int Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
