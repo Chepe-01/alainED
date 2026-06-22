@@ -27,7 +27,15 @@ struct Persona *nuevaPersona(){
     }
     return p;
 }
+struct Alumno *nuevoAlumno(){
+    struct Alumno *A=(struct Alumno*)malloc(sizeof(struct Alumno));
+    if(A==NULL);
+        printf("no se reservo memoria");
+    else{
+        
+    }
 
+}
 int Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
