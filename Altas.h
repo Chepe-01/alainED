@@ -10,9 +10,9 @@ struct Persona *nuevaPersona(){
 
     else{
         char nombre[50];
-        p->nombre=(char*)malloc(sizeof(strlen(nombre)+1));
+        p->nombre=(char*)malloc(sizeof(strlen(nombre)));
         printf("Nombre: \n");
-        fgets(nombre,sizeof(50),stdin);
+        scanf(" %[^\n]", &p->nombre);
 
         printf("Edad: \n");
         scanf("%d",&p->edad);
@@ -22,7 +22,7 @@ struct Persona *nuevaPersona(){
 
         printf("Fecha de nacimiento: \n");
         scanf("%s",p->fn);
-
+        p->ptrSig=NULL;
     }
     return p;
 }
