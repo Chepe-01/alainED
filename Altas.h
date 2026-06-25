@@ -27,21 +27,40 @@ struct Persona *nuevaPersona(){
     return p;
 }
 struct Alumno *nuevoAlumno(){
-    struct Alumno *A=(struct Alumno*)malloc(sizeof(struct Alumno));
-    if(A==NULL)
-        printf("no se reservo memoria");
-    else{
-        printf("matricula: \n");
-        scanf("%s",& A->matricula);
+    struct Alumno *A = (struct Alumno *)malloc(sizeof(struct Alumno));
+    if(A == NULL) {
+        printf("No se reservo memoria para Alumno\n");
+        return NULL; 
+    }
+    else {
+        printf("Matricula: \n");
+        scanf("%s", A->matricula); 
 
         printf("Carrera: \n");
-        scanf("%s",&A->carrera);
+        scanf("%s", A->carrera);
 
-        
+        printf("Semestre: \n");
+        scanf(" %c", &A->semestre); 
+
+        printf("Correo: \n");
+        scanf("%s", A->correo);
+
+
+        printf("\nGenerando Calificaciones \n");
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 4; j++) {
+                A->calif[i][j] = 5.0 + ((float)rand() / (float)RAND_MAX) * 5.0;
+                
+                if(j < 3) {
+                    printf("Materia %d - Parcial %d: %.1f\n", i + 1, j + 1, A->calif[i][j]);
+                } else {
+                    printf("Materia %d - Ordinario: %.1f\n", i + 1, A->calif[i][j]);
+                }
+            }
+        }
     }
-
+    return A; 
 }
-
 int Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
