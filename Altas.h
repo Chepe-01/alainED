@@ -11,7 +11,7 @@ struct Persona *nuevaPersona(){
         char nombre[50];
         p->nombre=(char*)malloc(sizeof(strlen(nombre)));
         printf("Nombre: \n");
-        scanf(" %[^\n]", &p->nombre);
+        scanf(" %[^\n]", &p->nombre);//primero scanf comillas
 
         printf("Edad: \n");
         scanf("%d",&p->edad);
