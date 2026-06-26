@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int Altas(struct Persona **ptr);
 
 struct Persona *nuevaPersona(){
     struct Persona *p =(struct Persona*)malloc(sizeof(struct Persona));
@@ -26,31 +25,32 @@ struct Persona *nuevaPersona(){
     }
     return p;
 }
+
 struct Alumno *nuevoAlumno(){
     struct Alumno *A = (struct Alumno *)malloc(sizeof(struct Alumno));
     if(A == NULL) {
         printf("No se reservo memoria para Alumno\n");
-        return NULL; 
+        return NULL;
     }
     else {
         printf("Matricula: \n");
-        scanf("%s", A->matricula); 
+        scanf("%s", A->matricula);
 
         printf("Carrera: \n");
         scanf("%s", A->carrera);
 
         printf("Semestre: \n");
-        scanf(" %c", &A->semestre); 
+        scanf(" %s", &A->semestre);
 
         printf("Correo: \n");
         scanf("%s", A->correo);
 
 
         printf("\nGenerando Calificaciones \n");
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 5; i++){
             for(int j = 0; j < 4; j++) {
-                A->calif[i][j] = 5.0 + ((float)rand() / (float)RAND_MAX) * 5.0;
-                
+                A->calif[i][j] = rand()%11;// de 3 parciles, el promedio de los 3 parciales, y el ordinario
+
                 if(j < 3) {
                     printf("Materia %d - Parcial %d: %.1f\n", i + 1, j + 1, A->calif[i][j]);
                 } else {
@@ -59,35 +59,44 @@ struct Alumno *nuevoAlumno(){
             }
         }
     }
-    return A; 
+    return A;
 }
-int Altas(struct Persona **ptr){
+int  Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
+    char esAlumno;
     int b=1;
     P=nuevaPersona();//crea nuevo nodo y retorna direccion de memoria
-    if(P==NULL)
+    if(P==NULL){
         b=0;
-    else{
+    }
+    printf("\n¿Es Alumno? : ");
+    scanf(" %s", &esAlumno);
 
+    if (esAlumno == 's') {
         A=nuevoAlumno();
         if(A==NULL){
             b=0;
             free(P);
-            
-            
         }
-        else{
+        }else{
             P->ptrAlum=A;
             P->ptrSig=*ptr;
             *ptr=P;
         }
-        return b;
-
+    return b;
+}
+void AltasVarias(struct Persona **ptr){
+    int n;
+    printf("Cuantas peronas desea dar de alta ");
+    scanf("%d",&n);
+    for(int i=0; i<n; i++){
+         Altas(ptr);
     }
+    
+}
 
     //Doble apuntador en la primer llamada.
     //alta retorna un entero, 1 si se pudo hacer el alta y 0 si no se pudo hacer el alta.
     //en caso que retone muedtra que no se pudo crear y muestra el emu nuevamente.
     //
-}
