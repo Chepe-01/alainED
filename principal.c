@@ -19,27 +19,40 @@ struct Alumno{
 };
 #endif
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
 #include "Altas.h"
 
 int main(){
-    int op;
+    int op,op2;
     struct Persona *ptr;
 
     do{
         op=menuPrincipal();                                           
         switch (op){
             case 1:
-                Altas(&ptr);
+            do{
+                op2=menuAltas();
+                switch (op2){
+                    case 1:
+                        Altas(&ptr);
+                        break;
+                    case 2:
+                        AltasVarias(ptr);
+                        break;
+                    default:
+                        printf("opcion invalida");
+                }
+            }while(op2!=3);
                 break;
+
             case 2:
                 break;
             case 3:
                 break;
             default:
+                printf("opcion invalidad");
                 break;
         }
 
