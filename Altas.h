@@ -11,12 +11,13 @@ struct Persona *nuevaPersona(){
         char nombre[50];
         p->nombre=(char*)malloc(sizeof(strlen(nombre)));
         printf("Nombre: \n");
-        scanf(" %[^\n]", &p->nombre);//primero scanf comillas
+        scanf(" ");
+        fgets(nombre, 50, stdin);
 
         printf("Edad: \n");
         scanf("%d",&p->edad);
 
-        printf("Genero: \n");
+        printf("Genero(m/f): \n");
         scanf(" %s",&p->genero);
 
         printf("Fecha de nacimiento: \n");
@@ -46,7 +47,7 @@ struct Alumno *nuevoAlumno(){
         scanf("%s", A->correo);
 
 
-        printf("\nGenerando Calificaciones \n");
+        printf("\nCalificaciones \n");
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 4; j++) {
                 A->calif[i][j] = rand()%11;// de 3 parciles, el promedio de los 3 parciales, y el ordinario
@@ -64,23 +65,23 @@ struct Alumno *nuevoAlumno(){
 int  Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
-    char esAlumno;
+    int esAlumno;
     int b=1;
     P=nuevaPersona();//crea nuevo nodo y retorna direccion de memoria
     if(P==NULL){
         b=0;
     }
-    printf("\n¿Es Alumno? : ");
-    scanf(" %s", &esAlumno);
+    printf("\n¿Es Alumno? (1 si es Alumno y 0 si no es Alumno): ");
+    scanf("%d", &esAlumno);
 
-    if (esAlumno == 's') {
+    if (esAlumno == 1) {
         A=nuevoAlumno();
         if(A==NULL){
             b=0;
             free(P);
         }
+        P->ptrAlum=A;
         }else{
-            P->ptrAlum=A;
             P->ptrSig=*ptr;
             *ptr=P;
         }
@@ -93,9 +94,8 @@ void AltasVarias(struct Persona **ptr){
     for(int i=0; i<n; i++){
          Altas(ptr);
     }
-    
-}
 
+}
     //Doble apuntador en la primer llamada.
     //alta retorna un entero, 1 si se pudo hacer el alta y 0 si no se pudo hacer el alta.
     //en caso que retone muedtra que no se pudo crear y muestra el emu nuevamente.
