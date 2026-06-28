@@ -9,7 +9,7 @@ struct Persona *nuevaPersona(){
 
     else{
         char nombre[50];
-        p->nombre=(char*)malloc(sizeof(strlen(nombre)));
+        p->nombre=(char*)malloc(sizeof(nombre));
         printf("Nombre: \n");
         scanf(" ");
         fgets(nombre, 50, stdin);
@@ -62,29 +62,34 @@ struct Alumno *nuevoAlumno(){
     }
     return A;
 }
-int  Altas(struct Persona **ptr){
+int Altas(struct Persona **ptr){
     struct Persona *P = NULL;
     struct Alumno *A = NULL;
     int esAlumno;
     int b=1;
-    P=nuevaPersona();//crea nuevo nodo y retorna direccion de memoria
-    if(P==NULL){
-        b=0;
+
+    P = nuevaPersona();
+    if(P == NULL){
+        return 0;
     }
+
     printf("\n¿Es Alumno? (1 si es Alumno y 0 si no es Alumno): ");
     scanf("%d", &esAlumno);
 
     if (esAlumno == 1) {
-        A=nuevoAlumno();
-        if(A==NULL){
-            b=0;
+        A = nuevoAlumno();
+        if(A == NULL){
+            b = 0;
             free(P);
+            return b;
         }
-        P->ptrAlum=A;
-        }else{
-            P->ptrSig=*ptr;
-            *ptr=P;
-        }
+        P->ptrAlum = A;
+    } else {
+        P->ptrAlum = NULL;
+    }
+    P->ptrSig = *ptr;
+    *ptr = P;
+
     return b;
 }
 void AltasVarias(struct Persona **ptr){
@@ -96,6 +101,7 @@ void AltasVarias(struct Persona **ptr){
     }
 
 }
+
     //Doble apuntador en la primer llamada.
     //alta retorna un entero, 1 si se pudo hacer el alta y 0 si no se pudo hacer el alta.
     //en caso que retone muedtra que no se pudo crear y muestra el emu nuevamente.
