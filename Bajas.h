@@ -17,3 +17,23 @@ void Bajas1(struct Persona **ptr){
         printf("Baja realizada con exito.\n");
     }
 }
+
+void BajasVarias(struct Persona **ptr){
+     int n;
+
+    if (*ptr == NULL) {
+        printf("No existen registros\n");
+        return;
+    }
+
+    printf("¿Cuantas personas desea dar de baja?: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        if (*ptr == NULL) {
+            printf("\nSe detuvieron las bajas porque la lista esta vacia.\n");
+            break;
+        }
+        Bajas1(ptr);
+    }
+}
