@@ -7,7 +7,7 @@ int menuPrincipal(void){
     printf("[2].....Dar de baja\n");
     printf("[3].....Mostrar\n");
     printf("[4].....Funciones Especiales\n");
-    printf("[5].....salir");
+    printf("[5].....salir\n");
     printf("Elija una opcion: \n");
     scanf("%d",&op);
     return op;
@@ -18,6 +18,7 @@ int menuAltas(void){
     printf("\n---MENU ALTAS---\n");
     printf("[1].....Dar de alta a una persona\n");
     printf("[2].....Dar de alta varias personas\n");
+    printf("[3].....Regresar\n");
     printf("Elija una opcion: \n");
     scanf("%d",&opc);
     return opc;
@@ -29,6 +30,7 @@ int menuBajas(void){
     printf("[1].....Dar de baja a una persona\n");
     printf("[2].....Dar de baja a varias personas\n");
     printf("[3].....Dar de baja a todos\n");
+    printf("[4].....Regresar\n");
     printf("Elija una opcion: \n");
     scanf("%d",&op);
     return op;
@@ -40,6 +42,7 @@ int menuMostrar(void){
     printf("[2].....Por carrera\n");
     printf("[3].....Por semestre\n");
     printf("[4].....Por Carrera y semestre\n");
+    printf("[5].....Regresar\n");
     printf("Elija una opcion: \n");
     scanf("%d",&op);
     return op;
