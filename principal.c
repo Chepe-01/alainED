@@ -22,14 +22,15 @@ struct Alumno{
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
-#include "Altas.h"
+#include "alta.h"
+#include "Bajas.h"
 
 int main(){
-    int op,op2;
-    struct Persona *ptr;
+    int op,op2,op3;
+    struct Persona *ptr=NULL;
 
     do{
-        op=menuPrincipal();                                           
+        op=menuPrincipal();
         switch (op){
             case 1:
             do{
@@ -39,7 +40,10 @@ int main(){
                         Altas(&ptr);
                         break;
                     case 2:
-                        AltasVarias(ptr);
+                        AltasVarias(&ptr);
+                        break;
+                    case 3:
+                        printf("\nRegresando... \n");
                         break;
                     default:
                         printf("opcion invalida");
@@ -48,17 +52,36 @@ int main(){
                 break;
 
             case 2:
+            do{
+               op3=menuBajas();
+                    switch (op3){
+                        case 1:
+                            Bajas1(&ptr);
+                            break;
+                        /*case 2:
+                            BajasVarias(&ptr);
+                            break;
+                        case 3:
+                            BajasTodos(&ptr);
+                            break;*/
+                        case 4:
+                            printf("Regresando...........\n");
+                            break;
+                        default:
+                            printf("opcion invalida");
+                    }
+                }while(op3!=4);
                 break;
             case 3:
                 break;
             default:
-                printf("opcion invalidad");
+                printf("opcion invalida");
                 break;
         }
 
     }while(op!=5);
 }
 
-//construir base de datos, 
+//construir base de datos,
 //dar de alta a una persona o puede ser un alumno. una persona no necesariamente es un alumno
-// 
+//
