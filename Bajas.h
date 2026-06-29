@@ -19,13 +19,11 @@ void Bajas1(struct Persona **ptr){
 }
 
 void BajasVarias(struct Persona **ptr){
-     int n;
-
+    int n;
     if (*ptr == NULL) {
         printf("No existen registros\n");
         return;
     }
-
     printf("¿Cuantas personas desea dar de baja?: ");
     scanf("%d", &n);
 
