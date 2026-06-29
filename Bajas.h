@@ -35,3 +35,23 @@ void BajasVarias(struct Persona **ptr){
         Bajas1(ptr);
     }
 }
+void BajasTodos(struct Persona **ptr) {
+    if (*ptr == NULL) {
+        printf("No existe registro.\n");
+        return;
+    }
+
+    printf("\n--- Eliminando todos los registros---\n");
+
+    
+    while (*ptr != NULL) {
+        struct Persona *ptraux = *ptr;
+        *ptr = ptraux->ptrSig;
+        if (ptraux->ptrAlum != NULL) {
+            free(ptraux->ptrAlum);
+        }
+        free(ptraux->nombre);
+        free(ptraux);
+    }
+    printf("Todos los registros han sido eliminados con exito.\n");
+}
