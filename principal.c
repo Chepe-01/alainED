@@ -58,10 +58,10 @@ int main(){
                         case 1:
                             Bajas1(&ptr);
                             break;
-                        /*case 2:
+                        case 2:
                             BajasVarias(&ptr);
                             break;
-                        case 3:
+                        /*case 3:
                             BajasTodos(&ptr);
                             break;*/
                         case 4:
