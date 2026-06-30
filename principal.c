@@ -12,7 +12,7 @@ struct Persona{
 
 struct Alumno{
     char matricula[10];
-    char carrera[5];
+    char carrera[6];
     char semestre;
     char correo[23];
     float calif [5][5];
@@ -24,9 +24,10 @@ struct Alumno{
 #include "menu.h"
 #include "alta.h"
 #include "Bajas.h"
+#include "mostrar.h"
 
 int main(){
-    int op,op2,op3;
+    int op,op2,op3,op4;
     struct Persona *ptr=NULL;
 
     do{
@@ -61,9 +62,9 @@ int main(){
                         case 2:
                             BajasVarias(&ptr);
                             break;
-                        /*case 3:
+                        case 3:
                             BajasTodos(&ptr);
-                            break;*/
+                            break;
                         case 4:
                             printf("Regresando...........\n");
                             break;
@@ -73,7 +74,35 @@ int main(){
                 }while(op3!=4);
                 break;
             case 3:
-                break;
+                do{
+                op4=menuMostrar();
+                switch(op4) {
+                    case 1:
+                        Mostrar(ptr);
+                    break;
+                    case 2:
+                        mostrarCarreras(ptr);
+                    break;
+                    case 3:
+                        mostrarSemestres(ptr);
+                    break;
+                    case 4:
+                        mostrarCarreraSemestre(ptr);
+                    break;
+                    case 5:
+                        mostrarPorNombre(ptr);
+                    break;
+                    case 6:
+                        buscarMatricula(ptr);
+                    break;
+                    case 7:
+                        printf("Regresando al menu principal...\n");
+                    break;
+                    default:
+                        printf("Opcion invalida, intente de nuevo.\n");
+                    }
+                } while(op4 != 7);
+            break;
             default:
                 printf("opcion invalida");
                 break;
@@ -81,7 +110,3 @@ int main(){
 
     }while(op!=5);
 }
-
-//construir base de datos,
-//dar de alta a una persona o puede ser un alumno. una persona no necesariamente es un alumno
-//
