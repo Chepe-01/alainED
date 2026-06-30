@@ -8,7 +8,6 @@ void Bajas1(struct Persona **ptr){
         return;
     }
 
-    // Elimina al frente de la fila (el primero que llego)
     ptraux = *ptr;
     *ptr = ptraux->ptrSig;
 
