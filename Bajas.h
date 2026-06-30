@@ -3,19 +3,21 @@
 
 void Bajas1(struct Persona **ptr){
     struct Persona *ptraux;
-    if(*ptr==NULL){
+    if(*ptr == NULL){
         printf("No existe registro\n");
         return;
-    }else{
-        ptraux=*ptr;
-        *ptr = ptraux->ptrSig;
-        if(ptraux->ptrAlum!=NULL){
-            free(ptraux->ptrAlum);
-        }
-        free(ptraux->nombre);
-        free(ptraux);
-        printf("Baja realizada con exito.\n");
     }
+
+    // Elimina al frente de la fila (el primero que llego)
+    ptraux = *ptr;
+    *ptr = ptraux->ptrSig;
+
+    if(ptraux->ptrAlum != NULL){
+        free(ptraux->ptrAlum);
+    }
+    free(ptraux->nombre);
+    free(ptraux);
+    printf("Baja realizada con exito.\n");
 }
 
 void BajasVarias(struct Persona **ptr){
@@ -35,15 +37,14 @@ void BajasVarias(struct Persona **ptr){
         Bajas1(ptr);
     }
 }
+
 void BajasTodos(struct Persona **ptr) {
     if (*ptr == NULL) {
         printf("No existe registro.\n");
         return;
     }
 
-    printf("\n--- Eliminando todos los registros---\n");
-
-    
+    printf("\n--- Eliminando todos los registros ---\n");
     while (*ptr != NULL) {
         struct Persona *ptraux = *ptr;
         *ptr = ptraux->ptrSig;
