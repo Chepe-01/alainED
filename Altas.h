@@ -12,9 +12,9 @@ struct Persona *nuevaPersona(){
         char nombreTemporal[50];
         p->nombre = (char*)malloc(50 * sizeof(char));
         printf("Nombre: \n");
-        scanf(" "); // Limpia basura del buffer
+        scanf(" "); 
         fgets(nombreTemporal, 50, stdin);
-        nombreTemporal[strcspn(nombreTemporal, "\n")] = '\0'; // Quita el salto de linea
+        nombreTemporal[strcspn(nombreTemporal, "\n")] = '\0'; 
         strcpy(p->nombre, nombreTemporal);
 
         printf("Edad: \n");
@@ -53,7 +53,7 @@ struct Alumno *nuevoAlumno(){
         printf("\nCalificaciones \n");
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 4; j++) {
-                A->calif[i][j] = rand()%11;// de 3 parciles, el promedio de los 3 parciales, y el ordinario
+                A->calif[i][j] = rand()%11;
 
                 if(j < 3) {
                     printf("Materia %d - Parcial %d: %.1f\n", i + 1, j + 1, A->calif[i][j]);
@@ -98,7 +98,7 @@ int Altas(struct Persona **ptr){
             aux = aux->ptrSig;
         }
 
-        aux->ptrSig = P;
+        aux->ptrSig = P; 
     }
 
     return b;
