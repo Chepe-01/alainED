@@ -27,7 +27,6 @@ void Mostrar(struct Persona *ptr){
     }
 }
 
-// 2. CARRERA: Filtra y muestra solo los alumnos de la carrera ingresada
 void mostrarCarreras(struct Persona *ptr){
     if(ptr == NULL){
         printf("No hay registros.\n");
@@ -50,7 +49,6 @@ void mostrarCarreras(struct Persona *ptr){
     if(!encontrado) printf("No se encontraron alumnos en esa carrera.\n");
 }
 
-// 3. SEMESTRE: Filtra y muestra los alumnos de un semestre específico
 void mostrarSemestres(struct Persona *ptr){
     if(ptr == NULL){
         printf("No hay registros.\n");
@@ -73,7 +71,6 @@ void mostrarSemestres(struct Persona *ptr){
     if(!encontrado) printf("No se encontraron alumnos en ese semestre.\n");
 }
 
-// 4. CARRERA Y SEMESTRE: Filtro combinado doble
 void mostrarCarreraSemestre(struct Persona *ptr) {
     if (ptr == NULL) {
         printf("No hay registros.\n");
@@ -100,7 +97,6 @@ void mostrarCarreraSemestre(struct Persona *ptr) {
     if(!encontrado) printf("No hay alumnos que coincidan con ambos filtros.\n");
 }
 
-// 5. NOMBRE: Busca a una persona por coincidencia exacta
 void mostrarPorNombre(struct Persona *ptr) {
     if (ptr == NULL) {
         printf("No hay registros.\n");
@@ -111,7 +107,7 @@ void mostrarPorNombre(struct Persona *ptr) {
     int encontrado = 0;
 
     printf("\nIngrese el nombre a buscar: ");
-    scanf("%s", nombreBusqueda); // Lee directo sin llamadas raras a sí misma
+    scanf("%s", nombreBusqueda); 
 
     while (ptr != NULL){
         if (strcmp(ptr->nombre, nombreBusqueda) == 0) {
@@ -136,7 +132,6 @@ void mostrarPorNombre(struct Persona *ptr) {
     }
 }
 
-// 6. MATRICULA: Busca un alumno por su matrícula
 void buscarMatricula(struct Persona *ptr) {
     if (ptr == NULL) {
         printf("No hay registros.\n");
