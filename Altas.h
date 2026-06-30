@@ -8,17 +8,20 @@ struct Persona *nuevaPersona(){
         printf("no se reservo memoria");
 
     else{
-        char nombre[50];
-        p->nombre=(char*)malloc(sizeof(nombre));
+
+        char nombreTemporal[50];
+        p->nombre = (char*)malloc(50 * sizeof(char));
         printf("Nombre: \n");
-        scanf(" ");
-        fgets(nombre, 50, stdin);
+        scanf(" "); // Limpia basura del buffer
+        fgets(nombreTemporal, 50, stdin);
+        nombreTemporal[strcspn(nombreTemporal, "\n")] = '\0'; // Quita el salto de linea
+        strcpy(p->nombre, nombreTemporal);
 
         printf("Edad: \n");
         scanf("%d",&p->edad);
 
         printf("Genero(m/f): \n");
-        scanf(" %s",&p->genero);
+        scanf(" %c",&p->genero);
 
         printf("Fecha de nacimiento: \n");
         scanf("%s",p->fn);
@@ -38,10 +41,10 @@ struct Alumno *nuevoAlumno(){
         scanf("%s", A->matricula);
 
         printf("Carrera: \n");
-        scanf("%s", A->carrera);
+        scanf(" %s", A->carrera);
 
         printf("Semestre: \n");
-        scanf(" %s", &A->semestre);
+        scanf(" %c", &A->semestre);
 
         printf("Correo: \n");
         scanf("%s", A->correo);
@@ -87,11 +90,20 @@ int Altas(struct Persona **ptr){
     } else {
         P->ptrAlum = NULL;
     }
-    P->ptrSig = *ptr;
-    *ptr = P;
+     if (*ptr == NULL) {
+        *ptr = P;
+    } else {
+        struct Persona *aux = *ptr;
+        while (aux->ptrSig != NULL) {
+            aux = aux->ptrSig;
+        }
+
+        aux->ptrSig = P;
+    }
 
     return b;
 }
+
 void AltasVarias(struct Persona **ptr){
     int n;
     printf("Cuantas peronas desea dar de alta ");
@@ -101,8 +113,3 @@ void AltasVarias(struct Persona **ptr){
     }
 
 }
-
-    //Doble apuntador en la primer llamada.
-    //alta retorna un entero, 1 si se pudo hacer el alta y 0 si no se pudo hacer el alta.
-    //en caso que retone muedtra que no se pudo crear y muestra el emu nuevamente.
-    //
