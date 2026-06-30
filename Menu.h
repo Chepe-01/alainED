@@ -42,7 +42,9 @@ int menuMostrar(void){
     printf("[2].....Por carrera\n");
     printf("[3].....Por semestre\n");
     printf("[4].....Por Carrera y semestre\n");
-    printf("[5].....Regresar\n");
+    printf("[5].....Por nombre\n");
+    printf("[6].....Por matricula\n");
+    printf("[7].....Regresar\n");
     printf("Elija una opcion: \n");
     scanf("%d",&op);
     return op;
